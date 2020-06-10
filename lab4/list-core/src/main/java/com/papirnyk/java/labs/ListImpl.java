@@ -2,7 +2,7 @@ package com.papirnyk.java.labs;
 
 import java.util.Arrays;
 
-public class ListImpl<T> implements IList<T>{
+public class ListImpl<T> implements IList<T> {
 
     protected Object[] elements;
     protected int size;
@@ -11,18 +11,18 @@ public class ListImpl<T> implements IList<T>{
         elements = new Object[capacity];
     }
 
-    private void checkIndexRange(int index){
-        if(index > size || index < 0){
-            throw new ArrayIndexOutOfBoundsException("Index was out of range");
+    private void checkIndexRange(int index) {
+        if (index > size || index < 0) {
+            throw new ArrayIndexOutOfBoundsException( "Index was out of range" );
         }
     }
 
-    private void increaseArrayLength(){
-        elements = Arrays.copyOf(elements, elements.length *2);
+    private void increaseArrayLength() {
+        elements = Arrays.copyOf( elements, elements.length * 2 );
     }
 
-    private void checkListLength(){
-        if(size + 1 == elements.length){
+    private void checkListLength() {
+        if (size + 1 == elements.length) {
             increaseArrayLength();
         }
     }
@@ -34,15 +34,15 @@ public class ListImpl<T> implements IList<T>{
 
     @Override
     public T getElement(int index) {
-        checkIndexRange(index);
+        checkIndexRange( index );
         return (T) elements[index];
     }
 
     @Override
     public void insert(int index, T element) {
-        checkIndexRange(index);
+        checkIndexRange( index );
         checkListLength();
-        System.arraycopy(elements, index, elements, index + 1, size - index);
+        System.arraycopy( elements, index, elements, index + 1, size - index );
         elements[index] = element;
         size++;
     }
@@ -55,15 +55,15 @@ public class ListImpl<T> implements IList<T>{
 
     @Override
     public void remove(int index) {
-        checkIndexRange(index);
-        System.arraycopy(elements, index + 1, elements, index, size - index);
+        checkIndexRange( index );
+        System.arraycopy( elements, index + 1, elements, index, size - index );
         elements[size--] = null;
 
     }
 
     @Override
     public void setElement(int index, T element) {
-        checkIndexRange(index);
+        checkIndexRange( index );
         elements[index] = element;
     }
 }
